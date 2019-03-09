@@ -1,4 +1,4 @@
-package domain.Model;
+package domain.model;
 
 public class ModelTest {
 }
