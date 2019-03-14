@@ -1,6 +1,6 @@
-package domain.RepoInterfaces;
+package domain.repoInterfaces;
 
-import domain.Model.ButtonEvent;
+import domain.model.ButtonEvent;
 
 public interface ButtonEventRepo extends CRUDRepo<ButtonEvent> {
 }

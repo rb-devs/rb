@@ -1,6 +1,6 @@
-package domain.RepoInterfaces;
+package domain.repoInterfaces;
 
-import domain.Model.CommentEvent;
+import domain.model.CommentEvent;
 
 public interface CommentEventRepo extends CRUDRepo<CommentEvent> {
 }

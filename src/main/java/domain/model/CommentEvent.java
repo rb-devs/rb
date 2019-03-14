@@ -1,10 +1,10 @@
-package domain.Model;
+package domain.model;
 
-public class CommentEvent implements Model{
-    private short ID;
-    private short lectureID;
-    private short userID;
-    private int time; //minutes from beggining?
+public class CommentEvent{
+    private long ID;
+    private long lectureID;
+    private long userID;
+    private int time; //minutes from beggining
     private String text;
 
     public CommentEvent(short ID, short lectureID, short userID, int time, String text) {
@@ -15,15 +15,15 @@ public class CommentEvent implements Model{
         this.text = text;
     }
 
-    public short getID() {
+    public long getID() {
         return ID;
     }
 
-    public short getLectureID() {
+    public long getLectureID() {
         return lectureID;
     }
 
-    public short getUserID() {
+    public long getUserID() {
         return userID;
     }
 

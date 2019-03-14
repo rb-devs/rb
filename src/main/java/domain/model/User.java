@@ -1,12 +1,12 @@
-package domain.Model;
+package domain.model;
 
 import java.util.ArrayList;
 
-public class User implements Model{
-    private short ID;
+public class User{
+    private long ID;
     private String login;
     private String name;
-    private short age;
+    private int age;
     private ArrayList<Role> roles;
 
     public User(short ID, String login, String name, short age, ArrayList<Role> roles) {
@@ -21,7 +21,7 @@ public class User implements Model{
         return roles;
     }
 
-    public short getID() {
+    public long getID() {
         return ID;
     }
 
@@ -33,7 +33,7 @@ public class User implements Model{
         return name;
     }
 
-    public short getAge() {
+    public int getAge() {
         return age;
     }
 }

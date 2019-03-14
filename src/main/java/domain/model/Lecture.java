@@ -1,10 +1,10 @@
-package domain.Model;
+package domain.model;
 
 import domain.Date;
 
-public class Lecture implements Model{
-    private short ID;
-    private short teacherID;
+public class Lecture{
+    private long ID;
+    private long teacherID;
     private String name;
     private Date date;
     private String description;
@@ -19,11 +19,11 @@ public class Lecture implements Model{
         this.length = length;
     }
 
-    public short getID() {
+    public long getID() {
         return ID;
     }
 
-    public short getTeacherID() {
+    public long getTeacherID() {
         return teacherID;
     }
 

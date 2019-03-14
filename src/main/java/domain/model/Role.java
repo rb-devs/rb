@@ -1,6 +1,6 @@
-package domain.Model;
-//может сделать перечисление ролей
-public class Role implements Model{
+package domain.model;
+
+public class Role {
     private String name;
     private short rating;
 

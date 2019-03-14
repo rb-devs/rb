@@ -1,6 +1,6 @@
-package domain.RepoInterfaces;
+package domain.repoInterfaces;
 
-import domain.Model.Lecture;
+import domain.model.Lecture;
 
 public interface LectureRepo extends CRUDRepo<Lecture> {
 }
