@@ -1,15 +1,16 @@
 package domain.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class User{
     private long ID;
     private String login;
     private String name;
     private int age;
-    private ArrayList<Role> roles;
+    private Collection<Role> roles;
 
-    public User(short ID, String login, String name, short age, ArrayList<Role> roles) {
+    public User(short ID, String login, String name, int age, Collection<Role> roles) {
         this.ID = ID;
         this.login = login;
         this.name = name;
@@ -17,7 +18,7 @@ public class User{
         this.roles = roles;
     }
 
-    public ArrayList<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
