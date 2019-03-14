@@ -16,5 +16,4 @@ dependencies {
     compile 'org.hibernate:hibernate-core:5.4.1.Final'
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.7.2'
     compile group: 'com.github.gwenn', name: 'sqlite-dialect', version: '0.1.0'
-
 }
