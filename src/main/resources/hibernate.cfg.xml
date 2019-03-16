@@ -10,12 +10,12 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
 
-    <mapping class="repository.ButtonEventEntity"/>
-    <mapping class="repository.CommentEventEntity"/>
-    <mapping class="repository.LectureEntity"/>
-    <mapping class="repository.RoleEntity"/>
-    <mapping class="repository.UserEntity"/>
-    <mapping class="repository.UserRoleEntity"/>
+    <mapping class="repository.entity.ButtonEventEntity"/>
+    <mapping class="repository.entity.CommentEventEntity"/>
+    <mapping class="repository.entity.LectureEntity"/>
+    <mapping class="repository.entity.RoleEntity"/>
+    <mapping class="repository.entity.UserEntity"/>
+    <mapping class="repository.entity.UserRoleEntity"/>
 
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->

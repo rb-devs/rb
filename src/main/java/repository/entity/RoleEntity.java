@@ -1,21 +1,29 @@
-package repository;
+package repository.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Role", schema = "main")
 public class RoleEntity {
-    private Short id;
+    public static long USER = 1;
+    public static long TEACHER = 2;
+    public static long ADMIN = 3;
+
+    private Long id;
     private String name;
 
+    public RoleEntity(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = true)
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

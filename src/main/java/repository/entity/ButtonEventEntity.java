@@ -1,24 +1,32 @@
-package repository;
+package repository.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ButtonEvent", schema = "main")
 public class ButtonEventEntity {
-    private Short id;
+    private Long id;
     private Short timeStamp;
     private Short pressType;
     private LectureEntity lectureByLectureId;
     private UserEntity userByUserId;
 
+    public ButtonEventEntity(Long id, Short timeStamp, Short pressType, LectureEntity lectureByLectureId, UserEntity userByUserId) {
+        this.id = id;
+        this.timeStamp = timeStamp;
+        this.pressType = pressType;
+        this.lectureByLectureId = lectureByLectureId;
+        this.userByUserId = userByUserId;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = true)
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

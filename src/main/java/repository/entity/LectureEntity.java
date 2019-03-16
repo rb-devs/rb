@@ -1,4 +1,4 @@
-package repository;
+package repository.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "Lecture", schema = "main")
 public class LectureEntity {
-    private Short id;
+    private Long id;
     private String name;
     private String date;
     private String description;
@@ -15,14 +15,23 @@ public class LectureEntity {
     private Collection<CommentEventEntity> commentEventsById;
     private UserEntity userByTeacherId;
 
+    public LectureEntity(Long id, String name, String date, String description, Short length, UserEntity userByTeacherId) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.description = description;
+        this.length = length;
+        this.userByTeacherId = userByTeacherId;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = true)
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

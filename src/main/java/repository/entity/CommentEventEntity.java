@@ -1,24 +1,32 @@
-package repository;
+package repository.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "CommentEvent", schema = "main")
 public class CommentEventEntity {
-    private Short id;
+    private Long id;
     private Short timeStamp;
     private String text;
     private LectureEntity lectureByLectureId;
     private UserEntity userByUserId;
 
+    public CommentEventEntity(Long id, Short timeStamp, String text, LectureEntity lectureByLectureId, UserEntity userByUserId) {
+        this.id = id;
+        this.timeStamp = timeStamp;
+        this.text = text;
+        this.lectureByLectureId = lectureByLectureId;
+        this.userByUserId = userByUserId;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = true)
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package repository;
+package repository.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -6,19 +6,18 @@ import java.util.Collection;
 @Entity
 @Table(name = "User", schema = "main")
 public class UserEntity {
-    private Short id;
+    private Long id;
     private String login;
     private String password;
     private String name;
-    private Integer age;
+    private Short age;
     private Collection<ButtonEventEntity> buttonEventsById;
     private Collection<CommentEventEntity> commentEventsById;
     private Collection<LectureEntity> lecturesById;
     private Collection<UserRoleEntity> userRolesById;
 
-    public UserEntity(){}
-
-    public UserEntity(String login, String password, String name, Integer age){
+    public UserEntity(Long id, String login, String password, String name, Short age) {
+        this.id = id;
         this.login = login;
         this.password = password;
         this.name = name;
@@ -28,11 +27,11 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
-    public Short getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,11 +67,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "Age", nullable = true)
-    public Integer getAge() {
+    public Short getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(Short age) {
         this.age = age;
     }
 
@@ -103,7 +102,7 @@ public class UserEntity {
         this.lecturesById = lecturesById;
     }
 
-    @OneToMany(mappedBy = "userByUserId")
+    @OneToMany(mappedBy = "pk.userEntity")
     public Collection<UserRoleEntity> getUserRolesById() {
         return userRolesById;
     }
