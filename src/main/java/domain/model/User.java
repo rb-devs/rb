@@ -11,10 +11,11 @@ public class User{
     private short age;
     private Collection<Role> roles;
 
-    public User(short ID, String login, String name, short age, Collection<Role> roles) {
+    public User(long ID, String login, String name, String password, short age, Collection<Role> roles) {
         this.ID = ID;
         this.login = login;
         this.name = name;
+        this.password = password;
         this.age = age;
         this.roles = roles;
     }
