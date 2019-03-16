@@ -7,6 +7,7 @@ public class User{
     private long ID;
     private String login;
     private String name;
+    private String password;
     private short age;
     private Collection<Role> roles;
 
@@ -37,4 +38,6 @@ public class User{
     public short getAge() {
         return age;
     }
+
+    public String getPassword(){return password;}
 }
