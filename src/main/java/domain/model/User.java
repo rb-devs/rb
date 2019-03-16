@@ -7,10 +7,10 @@ public class User{
     private long ID;
     private String login;
     private String name;
-    private int age;
+    private short age;
     private Collection<Role> roles;
 
-    public User(short ID, String login, String name, int age, Collection<Role> roles) {
+    public User(short ID, String login, String name, short age, Collection<Role> roles) {
         this.ID = ID;
         this.login = login;
         this.name = name;
@@ -34,7 +34,7 @@ public class User{
         return name;
     }
 
-    public int getAge() {
+    public short getAge() {
         return age;
     }
 }

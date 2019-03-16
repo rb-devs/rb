@@ -2,15 +2,15 @@ package domain.model;
 
 public class CommentEvent{
     private long ID;
-    private long lectureID;
-    private long userID;
-    private int time; //minutes from beggining
+    private Lecture lecture;
+    private User user;
+    private short time; //minutes from beggining
     private String text;
 
-    public CommentEvent(short ID, short lectureID, short userID, int time, String text) {
+    public CommentEvent(long ID, Lecture lecture, User user, short time, String text) {
         this.ID = ID;
-        this.lectureID = lectureID;
-        this.userID = userID;
+        this.lecture = lecture;
+        this.user = user;
         this.time = time;
         this.text = text;
     }
@@ -19,15 +19,15 @@ public class CommentEvent{
         return ID;
     }
 
-    public long getLectureID() {
-        return lectureID;
+    public Lecture getLecture() {
+        return lecture;
     }
 
-    public long getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public int getTime() {
+    public short getTime() {
         return time;
     }
 

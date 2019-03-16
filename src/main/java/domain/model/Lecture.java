@@ -4,15 +4,15 @@ import domain.Date;
 
 public class Lecture{
     private long ID;
-    private long teacherID;
+    private User teacher;
     private String name;
     private Date date;
     private String description;
-    private int length; //minutes? 60, 90
+    private short length;
 
-    public Lecture(short ID, short teacherID, String name, Date date, String description, int length) { //may be builder?
+    public Lecture(long ID, User teacher, String name, Date date, String description, short length) {
         this.ID = ID;
-        this.teacherID = teacherID;
+        this.teacher = teacher;
         this.name = name;
         this.date = date;
         this.description = description;
@@ -23,8 +23,8 @@ public class Lecture{
         return ID;
     }
 
-    public long getTeacherID() {
-        return teacherID;
+    public User getTeacher() {
+        return teacher;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Lecture{
         return description;
     }
 
-    public int getLength() {
+    public short getLength() {
         return length;
     }
 }
