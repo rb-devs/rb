@@ -1,9 +1,19 @@
 package domain.model;
 
 public class ButtonEvent {
-    enum PressTypes {
-        RED,
-        GREEN
+    public enum PressTypes {
+        RED ((short)0),
+        GREEN ((short)1);
+
+        private final short value;
+
+        PressTypes(short value) {
+            this.value = value;
+        }
+
+        public int value() {
+            return value;
+        }
     }
 
     private long ID;
