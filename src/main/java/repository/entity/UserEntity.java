@@ -16,6 +16,8 @@ public class UserEntity {
     private Collection<LectureEntity> lecturesById;
     private Collection<UserRoleEntity> userRolesById;
 
+    public UserEntity(){}
+
     public UserEntity(Long id, String login, String password, String name, Short age) {
         this.id = id;
         this.login = login;
@@ -102,7 +104,7 @@ public class UserEntity {
         this.lecturesById = lecturesById;
     }
 
-    @OneToMany(mappedBy = "pk.userEntity")
+    @OneToMany(mappedBy = "pk.userEntity", orphanRemoval = true)
     public Collection<UserRoleEntity> getUserRolesById() {
         return userRolesById;
     }

@@ -12,6 +12,8 @@ public class RoleEntity {
     private Long id;
     private String name;
 
+    public RoleEntity(){}
+
     public RoleEntity(long id, String name) {
         this.id = id;
         this.name = name;

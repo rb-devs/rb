@@ -14,6 +14,8 @@ public class UserRoleEntity {
     private UserRoleID pk = new UserRoleID();
     private Short rating;
 
+    public UserRoleEntity(){}
+
     public UserRoleEntity(UserEntity user, RoleEntity role, short rating) {
         setUserEntity(user);
         setRoleEntity(role);
