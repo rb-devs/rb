@@ -10,12 +10,25 @@ import java.util.Collection;
 public class ModelToHibernate {
     public static Tuple<UserEntity, Collection<UserRoleEntity>> getUserEntity(User user) {
         // create UserEntity without roles
-        UserEntity userEntity = new UserEntity(
-                user.getID(),
-                user.getLogin(),
-                user.getPassword(),
-                user.getName(),
-                user.getAge());
+        UserEntity userEntity;
+
+        // create new user
+        if (user.getID()==0){
+            userEntity = new UserEntity(
+                    user.getLogin(),
+                    user.getPassword(),
+                    user.getName(),
+                    user.getAge());
+        } else {
+            // update existing user
+            userEntity = new UserEntity(
+                    user.getID(),
+                    user.getLogin(),
+                    user.getPassword(),
+                    user.getName(),
+                    user.getAge());
+        }
+
 
         // get role list from the domain user model
         Collection<UserRoleEntity> userRoles = new ArrayList<>();
@@ -66,15 +79,15 @@ public class ModelToHibernate {
     }
 
     // TODO: 17.03.2019 don't know how to convert pressType to short 
-//    public static ButtonEventEntity getButtonEventEntity(ButtonEvent buttonEvent){
-//        UserEntity userEntity = ModelToHibernate.getUserEntity(buttonEvent.getUser()).getX();
-//        LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(buttonEvent.getLecture());
-//
-//        return new ButtonEventEntity(
-//                buttonEvent.getID(),
-//                buttonEvent.getTime(),
-//                buttonEvent.pressType(),
-//                lectureEntity,
-//                userEntity);
-//    }
+    public static ButtonEventEntity getButtonEventEntity(ButtonEvent buttonEvent){
+        UserEntity userEntity = ModelToHibernate.getUserEntity(buttonEvent.getUser()).getX();
+        LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(buttonEvent.getLecture());
+
+        return new ButtonEventEntity(
+                buttonEvent.getID(),
+                buttonEvent.getTime(),
+                buttonEvent.pressType().value(),
+                lectureEntity,
+                userEntity);
+    }
 }

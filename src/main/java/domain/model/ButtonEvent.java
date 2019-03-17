@@ -11,7 +11,7 @@ public class ButtonEvent {
             this.value = value;
         }
 
-        public int value() {
+        public short value() {
             return value;
         }
     }

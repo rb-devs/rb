@@ -9,16 +9,11 @@ import repository.HibernateSessionFactory;
 import repository.entity.LectureEntity;
 
 public class LectureRepoImpl implements LectureRepo {
-
-    private Session session;
-
-    public LectureRepoImpl(){
-        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-        session = sessionFactory.getCurrentSession();
-    }
+    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
     public void addOrUpdate(Lecture model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(model);
@@ -29,6 +24,7 @@ public class LectureRepoImpl implements LectureRepo {
 
     @Override
     public void delete(Lecture model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         LectureEntity lectureEntity = session.load(LectureEntity.class, model.getID());

@@ -9,16 +9,11 @@ import repository.HibernateSessionFactory;
 import repository.entity.CommentEventEntity;
 
 public class CommentEventRepoImpl implements CommentEventRepo {
-
-    private Session session;
-
-    public CommentEventRepoImpl(){
-        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-        session = sessionFactory.getCurrentSession();
-    }
+    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
     public void addOrUpdate(CommentEvent model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         CommentEventEntity commentEventEntity = ModelToHibernate.getCommentEventEntity(model);
@@ -29,6 +24,7 @@ public class CommentEventRepoImpl implements CommentEventRepo {
 
     @Override
     public void delete(CommentEvent model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         CommentEventEntity commentEventEntity = session.load(CommentEventEntity.class, model.getID());

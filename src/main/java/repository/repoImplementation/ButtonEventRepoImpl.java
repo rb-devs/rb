@@ -9,16 +9,11 @@ import repository.HibernateSessionFactory;
 import repository.entity.ButtonEventEntity;
 
 public class ButtonEventRepoImpl implements ButtonEventRepo {
-
-    private Session session;
-
-    public ButtonEventRepoImpl(){
-        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-        session = sessionFactory.getCurrentSession();
-    }
+    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
     public void addOrUpdate(ButtonEvent model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         ButtonEventEntity buttonEventEntity = ModelToHibernate.getButtonEventEntity(model);
@@ -29,11 +24,12 @@ public class ButtonEventRepoImpl implements ButtonEventRepo {
 
     @Override
     public void delete(ButtonEvent model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         ButtonEventEntity buttonEventEntity = session.load(ButtonEventEntity.class, model.getID());
         session.delete(buttonEventEntity);
-        
+
         session.getTransaction().commit();
     }
 

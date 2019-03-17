@@ -26,9 +26,16 @@ public class UserEntity {
         this.age = age;
     }
 
+    public UserEntity(String login, String password, String name, Short age) {
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.age = age;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID", nullable = true)
     public Long getId() {
         return id;
     }

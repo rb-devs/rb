@@ -20,6 +20,14 @@ public class User{
         this.roles = roles;
     }
 
+    public User(String login, String name, String password, short age, Collection<Role> roles) {
+        this.login = login;
+        this.name = name;
+        this.password = password;
+        this.age = age;
+        this.roles = roles;
+    }
+
     public Collection<Role> getRoles() {
         return roles;
     }

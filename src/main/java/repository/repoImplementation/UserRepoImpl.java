@@ -13,15 +13,11 @@ import util.Tuple;
 import java.util.Collection;
 
 public class UserRepoImpl implements UserRepo {
-    private Session session;
-
-    public UserRepoImpl(){
-        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-        session = sessionFactory.getCurrentSession();
-    }
+    private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
     public void addOrUpdate(User model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         Tuple<UserEntity, Collection<UserRoleEntity>> pair = ModelToHibernate.getUserEntity(model);
@@ -39,6 +35,7 @@ public class UserRepoImpl implements UserRepo {
 
     @Override
     public void delete(User model) {
+        Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
         UserEntity userEntity = session.load(UserEntity.class, model.getID());
