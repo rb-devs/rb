@@ -5,7 +5,7 @@ interface CRUDRepo<T> {
 
     void delete(T model);
 
-    void delete(short ID);
+    void delete(long ID);
 
-    T get(short ID);
+    T get(long ID);
 }
