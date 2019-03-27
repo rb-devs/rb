@@ -52,12 +52,9 @@ public class UserRepoImpl implements UserRepo {
             role.setUserEntity(userEntity);
             session.save(role);
         }
-
         session.getTransaction().commit();
 
-        session.beginTransaction();
-        userEntity = session.get(UserEntity.class, id);
-        session.getTransaction().commit();
+        userEntity.setUserRolesById(roleEntities);
 
         return HibernateToModel.getUser(userEntity);
     }
