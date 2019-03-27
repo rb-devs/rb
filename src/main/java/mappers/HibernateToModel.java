@@ -24,13 +24,23 @@ public class HibernateToModel {
     }
 
     public static Lecture getLecture(LectureEntity lectureEntity) {
+        Collection<ButtonEvent> buttonEvents = new ArrayList<>();
+        Collection<CommentEvent> commentEvents = new ArrayList<>();
+        for (ButtonEventEntity buttonEventEntity : lectureEntity.getButtonEventsById()) {
+            buttonEvents.add(getButtonEvent(buttonEventEntity));
+        }
+        for (CommentEventEntity commentEventEntity : lectureEntity.getCommentEventsById()) {
+            commentEvents.add(getCommentEvent(commentEventEntity));
+        }
         return new Lecture(
                 lectureEntity.getId(),
                 getUser(lectureEntity.getUserByTeacherId()),
                 lectureEntity.getName(),
                 new Date(lectureEntity.getDate()),
                 lectureEntity.getDescription(),
-                lectureEntity.getLength()
+                lectureEntity.getLength(),
+                buttonEvents,
+                commentEvents
         );
     }
 
