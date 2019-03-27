@@ -12,6 +12,7 @@ import repository.entity.ButtonEventEntity;
 public class ButtonEventRepoImpl implements ButtonEventRepo {
     private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
+    @Override
     public ButtonEvent addOrUpdate(ButtonEvent model) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -33,15 +34,5 @@ public class ButtonEventRepoImpl implements ButtonEventRepo {
         session.delete(buttonEventEntity);
 
         session.getTransaction().commit();
-    }
-
-    @Override
-    public ButtonEvent add(ButtonEvent model) {
-        return null;
-    }
-
-    @Override
-    public void update(ButtonEvent model) {
-
     }
 }

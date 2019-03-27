@@ -14,6 +14,7 @@ import java.util.Collection;
 public class LectureRepoImpl implements LectureRepo {
     private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
+    @Override
     public Lecture addOrUpdate(Lecture model) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -44,13 +45,5 @@ public class LectureRepoImpl implements LectureRepo {
         return null;
     }
 
-    @Override
-    public Lecture add(Lecture model) {
-        return null;
-    }
 
-    @Override
-    public void update(Lecture model) {
-
-    }
 }

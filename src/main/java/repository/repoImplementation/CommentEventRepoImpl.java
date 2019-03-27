@@ -12,6 +12,7 @@ import repository.entity.CommentEventEntity;
 public class CommentEventRepoImpl implements CommentEventRepo {
     private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
+    @Override
     public CommentEvent addOrUpdate(CommentEvent model) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -33,15 +34,5 @@ public class CommentEventRepoImpl implements CommentEventRepo {
         session.delete(commentEventEntity);
 
         session.getTransaction().commit();
-    }
-
-    @Override
-    public CommentEvent add(CommentEvent model) {
-        return null;
-    }
-
-    @Override
-    public void update(CommentEvent model) {
-
     }
 }
