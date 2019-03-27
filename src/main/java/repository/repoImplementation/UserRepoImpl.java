@@ -2,6 +2,7 @@ package repository.repoImplementation;
 
 import domain.model.User;
 import domain.repoInterfaces.UserRepo;
+import mappers.HibernateToModel;
 import mappers.ModelToHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,24 +17,6 @@ public class UserRepoImpl implements UserRepo {
     private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
     @Override
-    public void addOrUpdate(User model) {
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-
-        Tuple<UserEntity, Collection<UserRoleEntity>> pair = ModelToHibernate.getUserEntity(model);
-        UserEntity userEntity = pair.getX();
-        Collection<UserRoleEntity> roleEntities = pair.getY();
-        session.saveOrUpdate(userEntity);
-
-        for (UserRoleEntity role: roleEntities) {
-            role.setUserEntity(userEntity);
-            session.saveOrUpdate(role);
-        }
-
-        session.getTransaction().commit();
-    }
-
-    @Override
     public void delete(User model) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
@@ -46,12 +29,40 @@ public class UserRepoImpl implements UserRepo {
     }
 
     @Override
-    public void delete(short ID) {
-
+    public User get(String username, String pass) {
+        return null;
     }
 
     @Override
-    public User get(short ID) {
+    public Collection<User> getAll() {
         return null;
+    }
+
+    @Override
+    public User add(User model) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+
+        Tuple<UserEntity, Collection<UserRoleEntity>> pair = ModelToHibernate.getUserEntity(model);
+        UserEntity userEntity = pair.getX();
+        Collection<UserRoleEntity> roleEntities = pair.getY();
+        long id = (long)session.save(userEntity);
+
+        for (UserRoleEntity role: roleEntities) {
+            role.setUserEntity(userEntity);
+            session.save(role);
+        }
+
+        session.getTransaction().commit();
+
+        session.beginTransaction();
+        userEntity = session.get(UserEntity.class, id);
+        session.getTransaction().commit();
+
+        return HibernateToModel.getUser(userEntity);
+    }
+
+    @Override
+    public void update(User model) {
     }
 }

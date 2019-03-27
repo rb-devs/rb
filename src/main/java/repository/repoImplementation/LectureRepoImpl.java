@@ -2,17 +2,19 @@ package repository.repoImplementation;
 
 import domain.model.Lecture;
 import domain.repoInterfaces.LectureRepo;
+import mappers.HibernateToModel;
 import mappers.ModelToHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import repository.HibernateSessionFactory;
 import repository.entity.LectureEntity;
 
+import java.util.Collection;
+
 public class LectureRepoImpl implements LectureRepo {
     private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
-    @Override
-    public void addOrUpdate(Lecture model) {
+    public Lecture addOrUpdate(Lecture model) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
@@ -20,6 +22,8 @@ public class LectureRepoImpl implements LectureRepo {
         session.saveOrUpdate(model);
 
         session.getTransaction().commit();
+
+        return HibernateToModel.getLecture(lectureEntity);
     }
 
     @Override
@@ -36,12 +40,17 @@ public class LectureRepoImpl implements LectureRepo {
     }
 
     @Override
-    public void delete(short ID) {
-
+    public Collection<Lecture> getAll() {
+        return null;
     }
 
     @Override
-    public Lecture get(short ID) {
+    public Lecture add(Lecture model) {
         return null;
+    }
+
+    @Override
+    public void update(Lecture model) {
+
     }
 }

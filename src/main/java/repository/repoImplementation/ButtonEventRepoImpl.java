@@ -2,6 +2,7 @@ package repository.repoImplementation;
 
 import domain.model.ButtonEvent;
 import domain.repoInterfaces.ButtonEventRepo;
+import mappers.HibernateToModel;
 import mappers.ModelToHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,8 +12,7 @@ import repository.entity.ButtonEventEntity;
 public class ButtonEventRepoImpl implements ButtonEventRepo {
     private SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
 
-    @Override
-    public void addOrUpdate(ButtonEvent model) {
+    public ButtonEvent addOrUpdate(ButtonEvent model) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
@@ -20,6 +20,8 @@ public class ButtonEventRepoImpl implements ButtonEventRepo {
         session.saveOrUpdate(buttonEventEntity);
 
         session.getTransaction().commit();
+
+        return HibernateToModel.getButtonEvent(buttonEventEntity);
     }
 
     @Override
@@ -34,12 +36,12 @@ public class ButtonEventRepoImpl implements ButtonEventRepo {
     }
 
     @Override
-    public void delete(short ID) {
-
+    public ButtonEvent add(ButtonEvent model) {
+        return null;
     }
 
     @Override
-    public ButtonEvent get(short ID) {
-        return null;
+    public void update(ButtonEvent model) {
+
     }
 }

@@ -28,8 +28,7 @@ public class ModelToHibernate {
                     user.getName(),
                     user.getAge());
         }
-
-
+        
         // get role list from the domain user model
         Collection<UserRoleEntity> userRoles = new ArrayList<>();
 
@@ -57,13 +56,22 @@ public class ModelToHibernate {
     public static LectureEntity getLectureEntity(Lecture lecture){
         UserEntity userEntity = ModelToHibernate.getUserEntity(lecture.getTeacher()).getX();
 
-        return new LectureEntity(
+        LectureEntity lecture_ =  new LectureEntity(
                 lecture.getID(),
                 lecture.getName(),
                 lecture.getDate().toString(),
                 lecture.getDescription(),
                 lecture.getLength(),
                 userEntity);
+        for (ButtonEvent buttonEvent: lecture.getButtonEvents()) {
+            lecture_.getButtonEventsById().add(getButtonEventEntity(buttonEvent));
+        }
+
+        for (CommentEvent commentEvent : lecture.getCommentEvents()) {
+            lecture_.getCommentEventsById().add(getCommentEventEntity(commentEvent));
+        }
+
+        return lecture_;
     }
 
     public static CommentEventEntity getCommentEventEntity(CommentEvent commentEvent){
@@ -78,7 +86,6 @@ public class ModelToHibernate {
                 userEntity);
     }
 
-    // TODO: 17.03.2019 don't know how to convert pressType to short 
     public static ButtonEventEntity getButtonEventEntity(ButtonEvent buttonEvent){
         UserEntity userEntity = ModelToHibernate.getUserEntity(buttonEvent.getUser()).getX();
         LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(buttonEvent.getLecture());
