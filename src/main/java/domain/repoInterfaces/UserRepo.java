@@ -6,6 +6,4 @@ import java.util.Collection;
 
 public interface UserRepo extends CRUDRepo<User> {
     User get(String username, String pass);
-
-    Collection<User> getAll();
 }
