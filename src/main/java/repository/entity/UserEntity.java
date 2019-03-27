@@ -102,7 +102,7 @@ public class UserEntity {
         this.commentEventsById = commentEventsById;
     }
 
-    @OneToMany(mappedBy = "userByTeacherId")
+    @OneToMany(mappedBy = "userByTeacherId", cascade = {CascadeType.ALL})
     public Collection<LectureEntity> getLecturesById() {
         return lecturesById;
     }
@@ -111,7 +111,7 @@ public class UserEntity {
         this.lecturesById = lecturesById;
     }
 
-    @OneToMany(mappedBy = "pk.userEntity", orphanRemoval = true)
+    @OneToMany(mappedBy = "pk.userEntity", orphanRemoval = true, cascade = {CascadeType.ALL})
     public Collection<UserRoleEntity> getUserRolesById() {
         return userRolesById;
     }

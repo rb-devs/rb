@@ -1,6 +1,7 @@
 package repository.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -22,6 +23,8 @@ public class LectureEntity {
         this.description = description;
         this.length = length;
         this.userByTeacherId = userByTeacherId;
+        this.buttonEventsById = new ArrayList<>();
+        this.commentEventsById = new ArrayList<>();
     }
 
     @Id

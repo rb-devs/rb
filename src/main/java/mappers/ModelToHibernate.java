@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ModelToHibernate {
-    public static Tuple<UserEntity, Collection<UserRoleEntity>> getUserEntity(User user) {
+    public static UserEntity getUserEntity(User user) {
         // create UserEntity without roles
         UserEntity userEntity;
 
@@ -50,11 +50,12 @@ public class ModelToHibernate {
             // user is updated after we get it's id from database
             userRoles.add(new UserRoleEntity(userEntity, roleEntity, role.getRating()));
         }
-        return new Tuple<>(userEntity, userRoles);
+        userEntity.setUserRolesById(userRoles);
+        return userEntity;
     }
 
     public static LectureEntity getLectureEntity(Lecture lecture){
-        UserEntity userEntity = ModelToHibernate.getUserEntity(lecture.getTeacher()).getX();
+        UserEntity userEntity = ModelToHibernate.getUserEntity(lecture.getTeacher());
 
         LectureEntity lecture_ =  new LectureEntity(
                 lecture.getID(),
@@ -75,7 +76,7 @@ public class ModelToHibernate {
     }
 
     public static CommentEventEntity getCommentEventEntity(CommentEvent commentEvent){
-        UserEntity userEntity = ModelToHibernate.getUserEntity(commentEvent.getUser()).getX();
+        UserEntity userEntity = ModelToHibernate.getUserEntity(commentEvent.getUser());
         LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(commentEvent.getLecture());
 
         return new CommentEventEntity(
@@ -87,7 +88,7 @@ public class ModelToHibernate {
     }
 
     public static ButtonEventEntity getButtonEventEntity(ButtonEvent buttonEvent){
-        UserEntity userEntity = ModelToHibernate.getUserEntity(buttonEvent.getUser()).getX();
+        UserEntity userEntity = ModelToHibernate.getUserEntity(buttonEvent.getUser());
         LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(buttonEvent.getLecture());
 
         return new ButtonEventEntity(

@@ -43,18 +43,15 @@ public class UserRepoImpl implements UserRepo {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        Tuple<UserEntity, Collection<UserRoleEntity>> pair = ModelToHibernate.getUserEntity(model);
-        UserEntity userEntity = pair.getX();
-        Collection<UserRoleEntity> roleEntities = pair.getY();
+        UserEntity userEntity = ModelToHibernate.getUserEntity(model);
+
         session.saveOrUpdate(userEntity);
 
-        for (UserRoleEntity role: roleEntities) {
+        for (UserRoleEntity role: userEntity.getUserRolesById()) {
             role.setUserEntity(userEntity);
             session.saveOrUpdate(role);
         }
         session.getTransaction().commit();
-
-        userEntity.setUserRolesById(roleEntities);
 
         return HibernateToModel.getUser(userEntity);
     }
