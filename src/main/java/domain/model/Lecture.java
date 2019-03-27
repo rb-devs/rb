@@ -14,8 +14,18 @@ public class Lecture{
     private Collection<ButtonEvent> buttonEvents;
     private Collection<CommentEvent> commentEvents;
 
-    public Lecture(long ID, User teacher, String name, Date date, String description, short length, Collection<ButtonEvent> buttonEvents, Collection<CommentEvent> commentEvents) {
+       public Lecture(long ID, User teacher, String name, Date date, String description, short length, Collection<ButtonEvent> buttonEvents, Collection<CommentEvent> commentEvents) {
         this.ID = ID;
+        this.teacher = teacher;
+        this.name = name;
+        this.date = date;
+        this.description = description;
+        this.length = length;
+        this.buttonEvents = buttonEvents;
+        this.commentEvents = commentEvents;
+    }
+
+    public Lecture(User teacher, String name, Date date, String description, short length, Collection<ButtonEvent> buttonEvents, Collection<CommentEvent> commentEvents) {
         this.teacher = teacher;
         this.name = name;
         this.date = date;

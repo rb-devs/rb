@@ -20,7 +20,7 @@ public class LectureRepoImpl implements LectureRepo {
         session.beginTransaction();
 
         LectureEntity lectureEntity = ModelToHibernate.getLectureEntity(model);
-        session.saveOrUpdate(model);
+        session.saveOrUpdate(lectureEntity);
 
         session.getTransaction().commit();
 
