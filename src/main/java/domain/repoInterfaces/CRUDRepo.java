@@ -1,11 +1,9 @@
 package domain.repoInterfaces;
 
+import java.util.Collection;
+
 interface CRUDRepo<T> {
-    void addOrUpdate(T model);
+    T addOrUpdate(T model);
 
     void delete(T model);
-
-    void delete(long ID);
-
-    T get(long ID);
 }
